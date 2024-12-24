@@ -13,7 +13,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Container(
         child: Center(
           child: InkWell(
-              onTap: () => Navigator.pushNamed(context, '/home_screen'),
+              onTap: () => Navigator.pushNamed(context, 'home_screen'),
               child: Text('click here to move')),
         ),
       ),
