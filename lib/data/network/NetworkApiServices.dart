@@ -19,9 +19,16 @@ class Networkapiservices extends BaseApiServices {
   Future<dynamic> post(String url, dynamic data) async {
     var responseJson;
     try {
-      final response = await http.post(Uri.parse(url), body: data);
+      final response = await http.post(
+        Uri.parse(url),
+        body: jsonEncode(data), // Encode the data to JSON
+        headers: {
+          'Content-Type': 'application/json', // Set JSON content type
+        },
+      );
       responseJson = _returnResponse(response);
     } on SocketException {
+      ///This exception means if there is not internet
       throw FetchDataException('No Internet connection');
     }
     return responseJson;
