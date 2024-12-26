@@ -17,13 +17,30 @@ class AuthViewModel with ChangeNotifier {
 
   Future<void> login(dynamic data, BuildContext context) async {
     setLoading(true);
-    _authRepository.loginApi(data).then((value) {
+    _authRepository.signupApi(data).then((value) {
       Utils.toastMessage("Login Successful");
+      Navigator.pushNamed(context, 'home_screen');
       if (kDebugMode) {
         print(value.toString());
       }
     }).onError((error, stackTrace) {
       Utils.toastMessage("Login Unsuccessful due to $error");
+      if (kDebugMode) {
+        print(error.toString());
+      }
+    }).whenComplete(() => setLoading(false));
+  }
+
+  Future<void> signup(dynamic data, BuildContext context) async {
+    setLoading(true);
+    _authRepository.signupApi(data).then((value) {
+      Utils.toastMessage("Signup Successful");
+      Navigator.pushNamed(context, 'home_screen');
+      if (kDebugMode) {
+        print(value.toString());
+      }
+    }).onError((error, stackTrace) {
+      Utils.toastMessage("Signup Unsuccessful due to $error");
       if (kDebugMode) {
         print(error.toString());
       }

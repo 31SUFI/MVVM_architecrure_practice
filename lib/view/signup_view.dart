@@ -4,12 +4,14 @@ import 'package:mvvm_architecture/util/routes/utils.dart';
 import 'package:mvvm_architecture/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
-class LoginView extends StatefulWidget {
+class SignupView extends StatefulWidget {
+  const SignupView({super.key});
+
   @override
-  _LoginViewState createState() => _LoginViewState();
+  State<SignupView> createState() => _SignupViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignupViewState extends State<SignupView> {
   ValueNotifier<bool> _obscureText = ValueNotifier<bool>(true);
   final _emailFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
@@ -28,7 +30,7 @@ class _LoginViewState extends State<LoginView> {
     final authviewmodel = Provider.of<AuthViewModel>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Signup'),
         centerTitle: true,
       ),
       body: Padding(
@@ -88,7 +90,7 @@ class _LoginViewState extends State<LoginView> {
                   }),
               SizedBox(height: 16.0),
               RoundedButton(
-                title: "Login",
+                title: "Signup",
                 loading: authviewmodel.isLoading,
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
@@ -99,7 +101,7 @@ class _LoginViewState extends State<LoginView> {
 
                     print("Data to be sent: $data");
 
-                    authviewmodel.login(data, context);
+                    authviewmodel.signup(data, context);
                   } else {
                     Utils.toastMessage("Please fill all fields correctly");
                   }
@@ -107,10 +109,10 @@ class _LoginViewState extends State<LoginView> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, 'signup_screen');
+                  Navigator.pushNamed(context, 'login_screen');
                 },
                 child: Text(
-                  'Dont have an account? Signup',
+                  'Already have an account? Login',
                   style: TextStyle(
                     color: Colors.blue,
                     decoration: TextDecoration.underline,
