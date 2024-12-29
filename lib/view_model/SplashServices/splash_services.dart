@@ -6,16 +6,17 @@ import 'package:mvvm_architecture/util/routes/routes-name.dart';
 import '../user_view_model.dart';
 
 class SplashServices {
-  Future<UserModel> getUserDate() => UserViewModel().getUser();
+  Future<UserModel> getUserData() => UserViewModel().getUser();
 
   void checkAuthentication(BuildContext context) async {
-    getUserDate().then((value) async {
-      if (value.token == "null" || value.token == "") {
-        await Future.delayed(Duration(seconds: 3));
-        Navigator.pushNamed(context, RoutesNames.login);
+    await Future.delayed(Duration(seconds: 3));
+    getUserData().then((value) {
+      if (value.token == null || value.token!.isEmpty) {
+        Navigator.pushNamedAndRemoveUntil(
+            context, RoutesNames.login, (route) => false);
       } else {
-        await Future.delayed(Duration(seconds: 3));
-        Navigator.pushNamed(context, RoutesNames.home);
+        Navigator.pushNamedAndRemoveUntil(
+            context, RoutesNames.home, (route) => false);
       }
     }).onError((error, stackTrace) {
       if (kDebugMode) {

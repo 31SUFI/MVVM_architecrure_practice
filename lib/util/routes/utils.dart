@@ -10,6 +10,16 @@ class Utils {
     FocusScope.of(context).requestFocus(nextFocus);
   }
 
+  static double avgRating(List<int> ratings) {
+    double avg = 0;
+    double total = 0;
+    for (int i = 0; i < ratings.length; i++) {
+      total += ratings[i];
+      avg = total / ratings.length;
+    }
+    return avg;
+  }
+
   static void toastMessage(String message) {
     try {
       Fluttertoast.showToast(

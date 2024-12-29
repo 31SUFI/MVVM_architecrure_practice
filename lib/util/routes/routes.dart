@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_architecture/view/home_screen.dart';
+import 'package:mvvm_architecture/view/home_screen_view.dart';
 import 'package:mvvm_architecture/view/login_view.dart';
 import 'package:mvvm_architecture/view/signup_view.dart';
 import 'package:mvvm_architecture/view/splash_screen.dart';
