@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_architecture/view/home_screen_view.dart';
+
 import 'package:mvvm_architecture/view_model/SplashServices/splash_services.dart'; // Adjust the import according to your project structure
 
 class SplashScreen extends StatefulWidget {
